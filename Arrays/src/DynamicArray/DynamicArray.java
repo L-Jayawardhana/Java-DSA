@@ -32,6 +32,40 @@ public class DynamicArray {
         System.out.println("Array resized to capacity: " + capacity);
     }
 
+    public void delete(int index) {
+        if (index < 0 || index >= size) {
+            System.out.println("Invalid index.");
+            return;
+        }
+
+        // Shift elements to the left
+        for (int i = index; i < size - 1; i++) {
+            arr[i] = arr[i + 1];
+        }
+
+        size--;
+        arr[size] = 0; // Clear the last element
+
+        // Shrink array if size is 1/4 of capacity (to avoid thrashing)
+        if (size > 0 && size == capacity / 4) {
+            shrink();
+        }
+
+        System.out.println("Element deleted successfully.");
+    }
+
+    private void shrink() {
+        capacity = capacity / 2;
+        int[] newArr = new int[capacity];
+
+        for (int i = 0; i < size; i++) {
+            newArr[i] = arr[i];
+        }
+        arr = newArr;
+
+        System.out.println("Array shrunk to capacity: " + capacity);
+    }
+
     public int get(int index) {
         if (index < 0 || index >= size) {
             System.out.println("Invalid index");
