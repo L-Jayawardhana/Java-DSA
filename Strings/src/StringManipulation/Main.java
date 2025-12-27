@@ -1,6 +1,15 @@
 package StringManipulation;
 
-// This program reads a word from the user, prints its reverse, and reports whether it is a palindrome.
+/*
+Program behavior:
+- Prompts the user to enter a word (reads a full line of input).
+- Prints the reversed version of the word.
+- Reports whether the input is a palindrome.
+
+Notes:
+- Palindrome check ignores case and non-alphanumeric characters (e.g., "A man, a plan, a canal: Panama").
+- Reverse function returns the exact character order reversed.
+*/
 public class Main {
     public static void main(String[] args) {
         java.util.Scanner scanner = new java.util.Scanner(System.in);
