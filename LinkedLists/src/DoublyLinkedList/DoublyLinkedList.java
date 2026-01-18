@@ -27,6 +27,15 @@ public class DoublyLinkedList {
         return size == 0;
     }
 
+    /**
+     * Removes all elements from the list.
+     */
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+
     // Insert at end
     public void insert(int value) {
         Node newNode = new Node(value);

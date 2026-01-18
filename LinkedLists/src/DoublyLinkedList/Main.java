@@ -55,7 +55,8 @@ public class Main {
             System.out.println("2. Delete a value");
             System.out.println("3. Print list forward");
             System.out.println("4. Print list backward");
-            System.out.println("5. Exit");
+            System.out.println("5. Clear list");
+            System.out.println("6. Exit");
 
             // Read user's choice from input
             choice = readInt(scanner, "Enter your choice: ");
@@ -101,6 +102,12 @@ public class Main {
                     break;
 
                 case 5:
+                    list.clear();
+                    System.out.println("List cleared.");
+                    System.out.println("Current size: " + list.size());
+                    break;
+
+                case 6:
                     // EXIT OPERATION
                     // Terminates the program loop and closes resources
                     System.out.println("Exiting program. Goodbye!");
@@ -108,11 +115,11 @@ public class Main {
 
                 default:
                     // ERROR HANDLING
-                    // Catches invalid menu choices (numbers outside 1-5 range)
-                    System.out.println("Invalid choice! Please enter a number between 1 and 5.");
+                    // Catches invalid menu choices (numbers outside 1-6 range)
+                    System.out.println("Invalid choice! Please enter a number between 1 and 6.");
             }
 
-        } while (choice != 5); // Loop termination condition: continue until user enters 5
+        } while (choice != 6); // Loop termination condition: continue until user enters 6
 
         // Close Scanner to prevent resource leak
         scanner.close();
