@@ -13,6 +13,23 @@ import java.util.Scanner;
  * - All operations are performed in real-time with immediate feedback
  */
 public class Main {
+
+    /**
+     * Reads an integer from the scanner, re-prompting until the user enters a valid integer.
+     */
+    private static int readInt(Scanner scanner, String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            if (scanner.hasNextInt()) {
+                return scanner.nextInt();
+            }
+
+            // Consume invalid token and re-prompt
+            String invalid = scanner.next();
+            System.out.println("Invalid input: '" + invalid + "'. Please enter a valid integer.");
+        }
+    }
+
     public static void main(String[] args) {
         // Initialize Scanner object for reading user input from console
         Scanner scanner = new Scanner(System.in);
@@ -39,10 +56,9 @@ public class Main {
             System.out.println("3. Print list forward");
             System.out.println("4. Print list backward");
             System.out.println("5. Exit");
-            System.out.print("Enter your choice: ");
 
             // Read user's choice from input
-            choice = scanner.nextInt();
+            choice = readInt(scanner, "Enter your choice: ");
 
             // Switch statement to execute appropriate operation based on user's choice
             switch (choice) {
@@ -50,8 +66,7 @@ public class Main {
                     // INSERT OPERATION
                     // Prompts user for a value and adds it to the end of the list
                     // New node becomes the tail with prev pointer to old tail
-                    System.out.print("Enter value to insert: ");
-                    int insertValue = scanner.nextInt();
+                    int insertValue = readInt(scanner, "Enter value to insert: ");
                     list.insert(insertValue);
                     System.out.println("Value " + insertValue + " inserted successfully!");
                     break;
@@ -60,8 +75,7 @@ public class Main {
                     // DELETE OPERATION
                     // Searches for the specified value and removes the first occurrence
                     // Updates prev and next pointers of adjacent nodes to maintain list integrity
-                    System.out.print("Enter value to delete: ");
-                    int deleteValue = scanner.nextInt();
+                    int deleteValue = readInt(scanner, "Enter value to delete: ");
                     list.delete(deleteValue);
                     break;
 
