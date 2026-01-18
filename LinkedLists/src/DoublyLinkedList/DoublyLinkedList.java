@@ -17,6 +17,15 @@ public class DoublyLinkedList {
 
     private Node head;
     private Node tail;
+    private int size;
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
 
     // Insert at end
     public void insert(int value) {
@@ -24,19 +33,20 @@ public class DoublyLinkedList {
 
         if (head == null) {
             head = tail = newNode;
+            size = 1;
             return;
         }
 
         tail.next = newNode;
         newNode.prev = tail;
         tail = newNode;
+        size++;
     }
 
     // Delete by value
-    public void delete(int value) {
+    public boolean delete(int value) {
         if (head == null) {
-            System.out.println("List is empty");
-            return;
+            return false;
         }
 
         Node temp = head;
@@ -46,25 +56,31 @@ public class DoublyLinkedList {
         }
 
         if (temp == null) {
-            System.out.println("Value not found");
-            return;
+            return false;
         }
 
         if (temp == head) {
             head = head.next;
-            if (head != null)
+            if (head != null) {
                 head.prev = null;
-        }
-        else if (temp == tail) {
+            }
+        } else if (temp == tail) {
             tail = tail.prev;
-            tail.next = null;
-        }
-        else {
+            if (tail != null) {
+                tail.next = null;
+            }
+        } else {
             temp.prev.next = temp.next;
             temp.next.prev = temp.prev;
         }
 
-        System.out.println("Deleted " + value);
+        // If list becomes empty, keep tail/head consistent
+        if (head == null) {
+            tail = null;
+        }
+
+        size--;
+        return true;
     }
 
     // Print forward

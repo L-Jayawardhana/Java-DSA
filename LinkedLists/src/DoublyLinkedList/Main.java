@@ -69,6 +69,7 @@ public class Main {
                     int insertValue = readInt(scanner, "Enter value to insert: ");
                     list.insert(insertValue);
                     System.out.println("Value " + insertValue + " inserted successfully!");
+                    System.out.println("Current size: " + list.size());
                     break;
 
                 case 2:
@@ -76,7 +77,13 @@ public class Main {
                     // Searches for the specified value and removes the first occurrence
                     // Updates prev and next pointers of adjacent nodes to maintain list integrity
                     int deleteValue = readInt(scanner, "Enter value to delete: ");
-                    list.delete(deleteValue);
+                    boolean deleted = list.delete(deleteValue);
+                    if (deleted) {
+                        System.out.println("Deleted " + deleteValue + " successfully!");
+                    } else {
+                        System.out.println(list.isEmpty() ? "List is empty" : "Value not found");
+                    }
+                    System.out.println("Current size: " + list.size());
                     break;
 
                 case 3:
